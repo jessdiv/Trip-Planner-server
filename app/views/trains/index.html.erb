@@ -1,0 +1,23 @@
+<h2> Search results here </h2>
+
+<p> No.Interchanges: <%= @train["journeys"][0]["interchanges"] %> </p>
+
+<h2>////// Leg 1 //////</h2>
+
+<p> Origin: <%= @train["journeys"][0]["legs"][0]["origin"]["name"] %> </p>
+<p> Departure Time: <%= @train["journeys"][0]["legs"][0]["origin"]["departureTimePlanned"] %> </p>
+<p> Wheelchair Accessible: <%= @train["journeys"][0]["legs"][0]["origin"]["properties"]["WheelchairAccess"] %> </p>
+
+<p> Destination: <%= @train["journeys"][0]["legs"][0]["destination"]["name"] %> </p>
+<p> Arrival Time: <%= @train["journeys"][0]["legs"][0]["destination"]["arrivalTimePlanned"] %> </p>
+<p> Wheelchair Accessible: <%= @train["journeys"][0]["legs"][0]["destination"]["properties"]["WheelchairAccess"] %> </p>
+
+<h3> //////// TRIP DETAILS //////// </h3>
+
+<p> Train Line: <%= @train["journeys"][0]["legs"][0]["transportation"]["number"] %></p>
+<p> Train Line description: <%= @train["journeys"][0]["legs"][0]["transportation"]["description"] %></p>
+<p> Stop Sequence:
+  <% @train["journeys"][0]["legs"][0]["stopSequence"].each do |stop| %>
+  <p> <%= stop["name"] %> </p>
+  <% end %>
+</p>
