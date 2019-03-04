@@ -1,8 +1,8 @@
 <h2> Search results here </h2>
 
-<p> No.Interchanges: <%= @train["journeys"][0]["interchanges"] %> </p>
+<h2>////// Journey 1 //////</h2>
 
-<h2>////// Leg 1 //////</h2>
+<p> No.Interchanges: <%= @train["journeys"][0]["interchanges"] %> </p>
 
 <p> Origin: <%= @train["journeys"][0]["legs"][0]["origin"]["name"] %> </p>
 <p> Departure Time: <%= @train["journeys"][0]["legs"][0]["origin"]["departureTimePlanned"] %> </p>
@@ -18,6 +18,72 @@
 <p> Train Line description: <%= @train["journeys"][0]["legs"][0]["transportation"]["description"] %></p>
 <p> Stop Sequence:
   <% @train["journeys"][0]["legs"][0]["stopSequence"].each do |stop| %>
+  <p> <%= stop["name"] %> </p>
+  <% end %>
+</p>
+
+<h2>////// Journey 2 //////</h2>
+
+<p> No.Interchanges: <%= @train["journeys"][1]["interchanges"] %> </p>
+
+<p> Origin: <%= @train["journeys"][1]["legs"][0]["origin"]["name"] %> </p>
+<p> Departure Time: <%= @train["journeys"][1]["legs"][0]["origin"]["departureTimePlanned"] %> </p>
+<p> Wheelchair Accessible: <%= @train["journeys"][1]["legs"][0]["origin"]["properties"]["WheelchairAccess"] %> </p>
+
+<p> Destination: <%= @train["journeys"][1]["legs"][0]["destination"]["name"] %> </p>
+<p> Arrival Time: <%= @train["journeys"][1]["legs"][0]["destination"]["arrivalTimePlanned"] %> </p>
+<p> Wheelchair Accessible: <%= @train["journeys"][1]["legs"][0]["destination"]["properties"]["WheelchairAccess"] %> </p>
+
+<h3> //////// TRIP DETAILS //////// </h3>
+
+<p> Train Line: <%= @train["journeys"][1]["legs"][0]["transportation"]["number"] %></p>
+<p> Train Line description: <%= @train["journeys"][1]["legs"][0]["transportation"]["description"] %></p>
+<p> Stop Sequence:
+  <% @train["journeys"][1]["legs"][0]["stopSequence"].each do |stop| %>
+  <p> <%= stop["name"] %> </p>
+  <% end %>
+</p>
+
+<h2>////// Journey 3 //////</h2>
+
+<p> No.Interchanges: <%= @train["journeys"][2]["interchanges"] %> </p>
+
+<p> Origin: <%= @train["journeys"][2]["legs"][0]["origin"]["name"] %> </p>
+<p> Departure Time: <%= @train["journeys"][2]["legs"][0]["origin"]["departureTimePlanned"] %> </p>
+<p> Wheelchair Accessible: <%= @train["journeys"][2]["legs"][0]["origin"]["properties"]["WheelchairAccess"] %> </p>
+
+<p> Destination: <%= @train["journeys"][2]["legs"][0]["destination"]["name"] %> </p>
+<p> Arrival Time: <%= @train["journeys"][2]["legs"][0]["destination"]["arrivalTimePlanned"] %> </p>
+<p> Wheelchair Accessible: <%= @train["journeys"][2]["legs"][0]["destination"]["properties"]["WheelchairAccess"] %> </p>
+
+<h3> //////// TRIP DETAILS //////// </h3>
+
+<p> Train Line: <%= @train["journeys"][2]["legs"][0]["transportation"]["number"] %></p>
+<p> Train Line description: <%= @train["journeys"][2]["legs"][0]["transportation"]["description"] %></p>
+<p> Stop Sequence:
+  <% @train["journeys"][2]["legs"][0]["stopSequence"].each do |stop| %>
+  <p> <%= stop["name"] %> </p>
+  <% end %>
+</p>
+
+<h2>////// Journey 4 //////</h2>
+
+<p> No.Interchanges: <%= @train["journeys"][3]["interchanges"] %> </p>
+
+<p> Origin: <%= @train["journeys"][3]["legs"][0]["origin"]["name"] %> </p>
+<p> Departure Time: <%= @train["journeys"][3]["legs"][0]["origin"]["departureTimePlanned"] %> </p>
+<p> Wheelchair Accessible: <%= @train["journeys"][3]["legs"][0]["origin"]["properties"]["WheelchairAccess"] %> </p>
+
+<p> Destination: <%= @train["journeys"][3]["legs"][0]["destination"]["name"] %> </p>
+<p> Arrival Time: <%= @train["journeys"][3]["legs"][0]["destination"]["arrivalTimePlanned"] %> </p>
+<p> Wheelchair Accessible: <%= @train["journeys"][3]["legs"][0]["destination"]["properties"]["WheelchairAccess"] %> </p>
+
+<h3> //////// TRIP DETAILS //////// </h3>
+
+<p> Train Line: <%= @train["journeys"][3]["legs"][0]["transportation"]["number"] %></p>
+<p> Train Line description: <%= @train["journeys"][3]["legs"][0]["transportation"]["description"] %></p>
+<p> Stop Sequence:
+  <% @train["journeys"][3]["legs"][0]["stopSequence"].each do |stop| %>
   <p> <%= stop["name"] %> </p>
   <% end %>
 </p>

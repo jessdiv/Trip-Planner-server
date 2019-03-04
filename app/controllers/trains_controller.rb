@@ -12,15 +12,20 @@ class TrainsController < ApplicationController
       'coordOutputFormat': 'ESPG:4326',
       'depArrMacro': 'dep',
       'type_origin': 'stop',
-      'name_origin': 'Chatswood',
+      'name_origin': params[:origin], # params[:origin]
       'type_destination': 'stop',
-      'name_destination': 'Central',
+      'name_destination': params[:destination], # params[:destination]
       'TfNSWTR': 'true',
-      'wheelchair': 'on'
+      # 'wheelchair': 'on'
       })
 
       # parsing JSON into ruby object for iteration
       @train = JSON.parse train.body
 
+      # TO DO: export response as JSON
+      respond_to do |format|
+        format.html
+        format.json { render json: train}
+      end
   end
 end
