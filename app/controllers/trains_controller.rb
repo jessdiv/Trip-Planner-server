@@ -1,3 +1,5 @@
+require 'date'
+
 class TrainsController < ApplicationController
   def index
     train = HTTParty.get('https://api.transport.nsw.gov.au/v1/tp/trip',
@@ -11,11 +13,14 @@ class TrainsController < ApplicationController
       'outputFormat': 'rapidJSON',
       'coordOutputFormat': 'ESPG:4326',
       'depArrMacro': 'dep',
+      # 'itdTime': '1000',
+      # 'itdDate': '20190305',
       'type_origin': 'stop',
-      'name_origin': params[:origin], # params[:origin]
+      'name_origin': params[:origin], #'Central',
       'type_destination': 'stop',
-      'name_destination': params[:destination], # params[:destination]
+      'name_destination': params[:destination], #'Chatswood',
       'TfNSWTR': 'true',
+      'calcNumberOfTrips': 10,
       # 'wheelchair': 'on'
       })
 
@@ -23,9 +28,6 @@ class TrainsController < ApplicationController
       @train = JSON.parse train.body
 
       # TO DO: export response as JSON
-      respond_to do |format|
-        format.html
-        format.json { render json: train}
-      end
+      render :json => train.to_json
   end
 end
