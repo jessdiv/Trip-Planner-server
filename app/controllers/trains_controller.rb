@@ -1,6 +1,7 @@
 require 'date'
 
 class TrainsController < ApplicationController
+
   def index
     train = HTTParty.get('https://api.transport.nsw.gov.au/v1/tp/trip',
       :headers => {
@@ -13,14 +14,14 @@ class TrainsController < ApplicationController
       'outputFormat': 'rapidJSON',
       'coordOutputFormat': 'ESPG:4326',
       'depArrMacro': 'dep',
-      # 'itdTime': '1000',
+      # 'itdTime': params[:time],
       # 'itdDate': '20190305',
       'type_origin': 'stop',
       'name_origin': params[:origin], #'Central',
       'type_destination': 'stop',
       'name_destination': params[:destination], #'Chatswood',
       'TfNSWTR': 'true',
-      'calcNumberOfTrips': 10,
+      'calcNumberOfTrips': 6,
       # 'wheelchair': 'on'
       })
 
