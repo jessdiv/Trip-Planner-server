@@ -1,54 +1,59 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user,  only: [:index, :current, :update]
-  before_action :authorize_as_admin, only: [:destroy]
-  before_action :authorize,          only: [:update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # Should work if the current_user is authenticated.
   def index
-    render json: {status: 200, msg: 'Logged-in'}
+    @users = User.all
+    render :json => @users.to_json
   end
 
-  # Call this method to check if the user is logged-in.
-  # If the user is logged-in we will return the user's information.
-  def current
-    current_user.update!(last_login: Time.now)
-    render json: current_user
+  def show
   end
 
-  # Method to create a new user using the safe params we setup.
+  def new
+    @user = User.new
+  end
+
   def create
     user = User.new(user_params)
-    if user.save
-      render json: {status: 200, msg: 'User was created.'}
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  # Method to update a specific user. User will need to be authorized.
   def update
-    user = User.find(params[:id])
-    if user.update(user_params)
-      render json: { status: 200, msg: 'User details have been updated.' }
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  # Method to delete a user, this method is only for admin accounts.
   def destroy
-    user = User.find(params[:id])
-    if user.destroy
-      render json: { status: 200, msg: 'User has been deleted.' }
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
-  end
 
   private
+
+def set_user
+  @user = User.find(params[:id])
+end
 
   # Setting up strict parameters for when we add account creation.
   def user_params
     params.require(:user).permit(:username, :email, :phone, :password, :password_confirmation)
-  end
-
-  # Adding a method to check if current_user can update itself.
-  # This uses our UserModel method.
-  def authorize
-    return_unauthorized unless current_user && current_user.can_modify_user?(params[:id])
   end
 end

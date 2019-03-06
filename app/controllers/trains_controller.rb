@@ -14,15 +14,15 @@ class TrainsController < ApplicationController
       'outputFormat': 'rapidJSON',
       'coordOutputFormat': 'ESPG:4326',
       'depArrMacro': 'dep',
-      # 'itdTime': params[:time],
-      # 'itdDate': '20190305',
+      'itdTime': params[:time],
+      'itdDate': params[:date],
       'type_origin': 'stop',
       'name_origin': params[:origin], #'Central',
       'type_destination': 'stop',
       'name_destination': params[:destination], #'Chatswood',
       'TfNSWTR': 'true',
       'calcNumberOfTrips': 6,
-      # 'wheelchair': 'on'
+      'wheelchair': params[:wheelchairAccess]
       })
 
       # parsing JSON into ruby object for iteration

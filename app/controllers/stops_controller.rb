@@ -2,6 +2,7 @@ class StopsController < ApplicationController
 
   def index
     @allStations = {
+      
       'Aberdeen' => '10101192',
       'Adamstown' => '10101159',
       'Albion Park' => '10101381',
